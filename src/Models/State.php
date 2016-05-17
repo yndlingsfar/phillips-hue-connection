@@ -1,6 +1,6 @@
 <?php
 
-namespace DSteiner23\Light;
+namespace DSteiner23\Light\Models;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -12,8 +12,7 @@ class State
 {
     const MAX_SATURATION = 255;
     const MAX_BRIGHTNESS = 255;
-    
-    
+
     /**
      * @var bool
      */

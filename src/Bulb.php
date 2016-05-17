@@ -2,6 +2,8 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\State;
+
 /**
  * Class Bulp
  * @package DSteiner23\Light
