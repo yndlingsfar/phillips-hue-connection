@@ -1,0 +1,25 @@
+{
+  "name": "dsteiner23/phillips-hue-connection",
+  "description": "Phillips Hue API integration",
+  "keywords": [
+    "hue",
+    "phillips"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Daniel Steiner",
+      "email": "daniel.steiner@gmx.de"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "guzzlehttp/guzzle": "~6.0",
+    "jms/serializer": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "DSteiner23\\Light\\": "src/Dsteiner23/Light"
+    }
+  }
+}
