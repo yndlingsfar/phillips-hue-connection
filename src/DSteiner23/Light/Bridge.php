@@ -12,17 +12,28 @@ class Bridge
     /**
      * @var string
      */
-    private $id = "001788fffe2894cf";
+    private $id;
 
     /**
      * @var string
      */
-    private $ip = "192.168.0.100";
+    private $ip;
 
     /**
      * @var string
      */
-    private $user = "rYKVugZyal4cIdMHAfVY9Vd-BPOXKlklr5u4HslQ";
+    private $user;
+
+    /**
+     * Bridge constructor.
+     * @param $ip
+     * @param $user
+     */
+    public function __construct($ip, $user)
+    {
+        $this->ip = $ip;
+        $this->user = $user;
+    }
 
     /**
      * @return string
