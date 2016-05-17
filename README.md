@@ -22,6 +22,6 @@ require __DIR__ . '/vendor/autoload.php';
 __Usage__
 
 ````
-$lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build('192.168.100.1', 'abcedefghijk');
+$lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build('192.168.100.1', 'abcedefghijklmno');
 $lightSwitch->switchState(1, 300, 300, 500);
 ````
