@@ -7,19 +7,21 @@ __Installation__
 composer require dsteiner23/phillips-hue-connection
 ````
 
+__Autoloading__
+
+Register vendor autoloader and doctrine Annoation registry somewhere in your bootstraping file
+
+````
+require __DIR__ . '/vendor/autoload.php';
+// JMS Serializer Annoations
+\Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
+    'JMS\Serializer\Annotation', __DIR__.'/vendor/jms/serializer/src'
+);
+````
 
 __Usage__
 
 ````
-/**
- * Class Hue
- * @package App\Http\Controllers
- */
-class HueController extends Controller
-{
-    public function test(LightSwitchInterface $lightSwitch)
-    {
-        $lightSwitch->switchState(5, 150, 150, 7500);
-    }
-}
+$lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build('192.168.100.1', 'abcedefghijk');
+$lightSwitch->switchState(1, 300, 300, 500);
 ````

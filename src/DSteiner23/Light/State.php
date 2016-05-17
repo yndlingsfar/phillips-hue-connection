@@ -2,6 +2,8 @@
 
 namespace DSteiner23\Light;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Class State
  * @package App\Light
@@ -20,18 +22,21 @@ class State
     /**
      * The intensity of the color
      * @var integer
+     * @Serializer\SerializedName("sat")
      */
     private $saturation = self::MAX_SATURATION;
 
     /**
      * The brightness of the light
      * @var integer
+     * @Serializer\SerializedName("bri")
      */
     private $brightness = self::MAX_BRIGHTNESS;
 
     /**
      * The measure of color
      * @var integer
+     * @Serializer\SerializedName("hue")
      */
     private $hue;
 
