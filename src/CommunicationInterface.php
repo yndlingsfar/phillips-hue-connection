@@ -2,6 +2,8 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\Bulb;
+
 /**
  * Provides basic functionality for interaction with Phillips Hue API
  * 

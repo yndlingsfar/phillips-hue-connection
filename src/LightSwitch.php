@@ -2,6 +2,7 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\Bulb;
 use DSteiner23\Light\Models\State;
 
 /**
@@ -56,5 +57,4 @@ class LightSwitch implements LightSwitchInterface
         
         return $this->communication->putOneBulbState($id, $bulb);
     }
-    
 }

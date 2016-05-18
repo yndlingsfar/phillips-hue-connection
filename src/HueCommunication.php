@@ -2,6 +2,7 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\Bulb;
 use GuzzleHttp\Client;
 use JMS\Serializer\Serializer;
 
@@ -53,5 +54,4 @@ class HueCommunication implements CommunicationInterface
             ['body' => $body]
         );
     }
-
 }
