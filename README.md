@@ -1,4 +1,5 @@
 [![Packagist License](https://poser.pugx.org/barryvdh/laravel-debugbar/license.png)](http://choosealicense.com/licenses/mit/)
+[![Build Status](https://travis-ci.org/dsteiner23/phillips-hue-connection.svg?branch=master)](https://travis-ci.org/dsteiner23/phillips-hue-connection)
 
 # phillips-hue-connection
 Provides basic functionality for the Philllips Hue debug API
