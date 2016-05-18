@@ -2,6 +2,8 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\State;
+
 /**
  * Provides basic light switch functionality
  *

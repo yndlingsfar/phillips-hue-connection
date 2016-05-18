@@ -2,6 +2,8 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\State;
+
 /**
  * Class LightSwitch
  * @package DSteiner23\Light
