@@ -2,7 +2,7 @@
 
 namespace DSteiner23\Light;
 
-use DSteiner23\Light\Models\Bulb;
+use DSteiner23\Light\Models\State;
 use GuzzleHttp\Client;
 use JMS\Serializer\Serializer;
 
@@ -40,9 +40,9 @@ class HueCommunication implements CommunicationInterface
     }
 
     //@todo: implement ID field of bulp
-    public function putOneBulbState($id, Bulb $bulb)
+    public function putOneBulbState($id, State $state)
     {
-        $body = $this->serializer->serialize($bulb->getState(), 'json');
+        $body = $this->serializer->serialize($state, 'json');
 
         return $this->client->request('PUT',
             sprintf(

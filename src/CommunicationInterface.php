@@ -2,7 +2,7 @@
 
 namespace DSteiner23\Light;
 
-use DSteiner23\Light\Models\Bulb;
+use DSteiner23\Light\Models\State;
 
 /**
  * Provides basic functionality for interaction with Phillips Hue API
@@ -16,8 +16,8 @@ interface CommunicationInterface
      * Change the state of a bulb
      *
      * @param $id
-     * @param Bulb $bulb
+     * @param State $state
      * @return bool
      */
-    public function putOneBulbState($id, Bulb $bulb);
+    public function putOneBulbState($id, State $state);
 }
