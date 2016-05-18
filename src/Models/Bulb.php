@@ -1,8 +1,8 @@
 <?php
 
-namespace DSteiner23\Light;
+namespace DSteiner23\Light\Models;
 
-use DSteiner23\Light\Models\State;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Bulp
@@ -12,21 +12,29 @@ class Bulb
 {
     /**
      * @var State
+     * @Serializer\SerializedName("state")
+     * @Serializer\Type("DSteiner23\Light\Models\State")
      */
     private $state;
 
     /**
      * @var string
+     * @Serializer\SerializedName("type")
+     * @Serializer\Type("string")
      */
     private $type;
 
     /**
      * @var string
+     * @Serializer\SerializedName("name")
+     * @Serializer\Type("string")
      */
     private $name;
 
     /**
      * @var string
+     * @Serializer\SerializedName("modelId")
+     * @Serializer\Type("string")
      */
     private $modelId;
 

@@ -22,6 +22,7 @@ class State
      * The intensity of the color
      * @var integer
      * @Serializer\SerializedName("sat")
+     * @Serializer\Type("integer")
      */
     private $saturation = self::MAX_SATURATION;
 
@@ -29,6 +30,7 @@ class State
      * The brightness of the light
      * @var integer
      * @Serializer\SerializedName("bri")
+     * @Serializer\Type("integer")
      */
     private $brightness = self::MAX_BRIGHTNESS;
 
@@ -36,6 +38,7 @@ class State
      * The measure of color
      * @var integer
      * @Serializer\SerializedName("hue")
+     * @Serializer\Type("integer")
      */
     private $hue;
 
