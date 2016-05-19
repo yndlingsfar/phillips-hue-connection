@@ -1,6 +1,6 @@
 <?php
 
-namespace DSteiner23\Light;
+namespace DSteiner23\Light\Models;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -12,8 +12,7 @@ class State
 {
     const MAX_SATURATION = 255;
     const MAX_BRIGHTNESS = 255;
-    
-    
+
     /**
      * @var bool
      */
@@ -23,6 +22,7 @@ class State
      * The intensity of the color
      * @var integer
      * @Serializer\SerializedName("sat")
+     * @Serializer\Type("integer")
      */
     private $saturation = self::MAX_SATURATION;
 
@@ -30,6 +30,7 @@ class State
      * The brightness of the light
      * @var integer
      * @Serializer\SerializedName("bri")
+     * @Serializer\Type("integer")
      */
     private $brightness = self::MAX_BRIGHTNESS;
 
@@ -37,6 +38,7 @@ class State
      * The measure of color
      * @var integer
      * @Serializer\SerializedName("hue")
+     * @Serializer\Type("integer")
      */
     private $hue;
 
