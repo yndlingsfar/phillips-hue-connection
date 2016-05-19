@@ -13,19 +13,20 @@ composer require dsteiner23/phillips-hue-connection
 
 __Autoloading__
 
-Register vendor autoloader and doctrine Annoation registry somewhere in your bootstraping file
+Register vendor autoloader and doctrine somewhere in your bootstraping file
 
 ````
 require __DIR__ . '/vendor/autoload.php';
-// JMS Serializer Annoations
-\Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
-    'JMS\Serializer\Annotation', __DIR__.'/vendor/jms/serializer/src'
-);
 ````
 
 __Usage__
 
 ````
 $lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build('192.168.100.1', 'abcedefghijklmno');
-$lightSwitch->switchState(1, 300, 300, 500);
+$lightSwitch->switchState($id, $saturation, $brightness, $hue);
+
+* $id: The unique Id of your Bulb
+* $saturation: integer 0-255
+* $brightness: integer 0-255
+* $hue: The color 0 - 65000
 ````

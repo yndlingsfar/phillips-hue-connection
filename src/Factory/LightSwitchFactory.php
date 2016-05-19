@@ -2,6 +2,7 @@
 
 namespace DSteiner23\Light\Factory;
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use DSteiner23\Light\Bridge;
 use DSteiner23\Light\HueCommunication;
 use DSteiner23\Light\LightSwitch;
@@ -14,8 +15,16 @@ use JMS\Serializer\SerializerBuilder;
  */
 class LightSwitchFactory
 {
+    /**
+     * @param $ip
+     * @param $username
+     * @return LightSwitch
+     */
     static function build($ip, $username)
     {
+        //Doctrine Annotation Reader registration
+        AnnotationRegistry::registerLoader('class_exists');
+        
         $serializer = SerializerBuilder::create()->build();
         $communication = new HueCommunication(new Client(), $serializer, new Bridge($ip, $username));
         
