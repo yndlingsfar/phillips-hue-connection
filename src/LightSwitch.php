@@ -2,7 +2,6 @@
 
 namespace DSteiner23\Light;
 
-use DSteiner23\Light\Models\Bulb;
 use DSteiner23\Light\Models\State;
 
 /**
@@ -42,19 +41,12 @@ class LightSwitch implements LightSwitchInterface
         $hue
     ) {
 
-        //@todo: Factory
-        $bulb = new Bulb();
-        $bulb->setType('ahahaa');
-        $bulb->setName('test');
-
         $state = new State();
         $state->setOn(true)
             ->setHue($hue)
             ->setBrightness($brightness)
             ->setSaturation($saturation);
 
-        $bulb->setState($state);
-        
-        return $this->communication->putOneBulbState($id, $bulb);
+        return $this->communication->putOneBulbState($id, $state);
     }
 }
