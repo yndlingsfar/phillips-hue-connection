@@ -22,7 +22,8 @@
   },
   "autoload": {
     "psr-4": {
-      "DSteiner23\\Light\\": "src/"
+      "DSteiner23\\Light\\": "src/",
+      "DSteiner23\\Test\\": "src/tests"
     }
   }
 }
