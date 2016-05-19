@@ -17,6 +17,9 @@
     "guzzlehttp/guzzle": "~6.0",
     "jms/serializer": "^1.1"
   },
+  "require-dev": {
+    "phpunit/phpunit": "@stable"
+  },
   "autoload": {
     "psr-4": {
       "DSteiner23\\Light\\": "src/"
