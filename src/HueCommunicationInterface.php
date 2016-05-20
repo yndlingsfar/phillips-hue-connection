@@ -13,6 +13,13 @@ use DSteiner23\Light\Models\State;
 interface HueCommunicationInterface
 {
     /**
+     * Returns all available lights as array of objects
+     *
+     * @return array
+     */
+    public function getLights();
+
+    /**
      * Change the state of a bulb
      *
      * @param $id
