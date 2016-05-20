@@ -15,6 +15,8 @@ class State
 
     /**
      * @var bool
+     * @Serializer\SerializedName("on")
+     * @Serializer\Type("boolean")
      */
     private $on = true;
 

@@ -33,7 +33,7 @@ class Bulb
 
     /**
      * @var string
-     * @Serializer\SerializedName("modelId")
+     * @Serializer\SerializedName("modelid")
      * @Serializer\Type("string")
      */
     private $modelId;
