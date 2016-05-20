@@ -69,12 +69,15 @@ class HueCommunication implements HueCommunicationInterface
         }
     }
 
-    //@todo: implement ID field of bulp
+    /**
+     * @inheritdoc
+     */
     public function putOneBulbState($id, State $state)
     {
         $body = $this->serializer->serialize($state, 'json');
 
-        return $this->client->request('PUT',
+        /** @var ResponseInterface $response */
+        $response = $this->client->request('PUT',
             sprintf(
                 '%s/api/%s/lights/%d/state',
                 $this->bridge->getIp(),
@@ -83,5 +86,12 @@ class HueCommunication implements HueCommunicationInterface
             ),
             ['body' => $body]
         );
+
+        // Check if request was successful
+        if ($response->getStatusCode() == 200) {
+            return true;
+        }
+
+        return false;
     }
 }
