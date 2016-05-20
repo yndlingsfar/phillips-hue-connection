@@ -11,17 +11,17 @@ use DSteiner23\Light\Models\State;
 class LightSwitch implements LightSwitchInterface
 {
     /**
-     * @var CommunicationInterface
+     * @var HueCommunicationInterface
      */
-    private $communication;
+    private $hueCommunication;
 
     /**
      * LightSwitch constructor.
-     * @param CommunicationInterface $communication
+     * @param HueCommunicationInterface $hueCommunication
      */
-    public function __construct(CommunicationInterface $communication)
+    public function __construct(HueCommunicationInterface $hueCommunication)
     {
-        $this->communication = $communication;
+        $this->hueCommunication = $hueCommunication;
     }
 
     public function switchOn($id)
@@ -47,6 +47,6 @@ class LightSwitch implements LightSwitchInterface
             ->setBrightness($brightness)
             ->setSaturation($saturation);
 
-        return $this->communication->putOneBulbState($id, $state);
+        return $this->hueCommunication->putOneBulbState($id, $state);
     }
 }

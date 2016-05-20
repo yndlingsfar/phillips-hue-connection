@@ -10,7 +10,7 @@ use JMS\Serializer\Serializer;
  * Class HueCommunication
  * @package DSteiner23\Light
  */
-class HueCommunication implements CommunicationInterface
+class HueCommunication implements HueCommunicationInterface
 {
     /**
      * @var Client

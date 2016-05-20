@@ -7,10 +7,10 @@ use DSteiner23\Light\Models\State;
 /**
  * Provides basic functionality for interaction with Phillips Hue API
  * 
- * Interface CommunicationInterface
+ * Interface HueCommunicationInterface
  * @package DSteiner23\Light
  */
-interface CommunicationInterface
+interface HueCommunicationInterface
 {
     /**
      * Change the state of a bulb
