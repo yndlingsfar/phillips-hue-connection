@@ -82,7 +82,6 @@ final class Cacher implements CacherInterface
 
     /**
      * @return array
-     * @throws \RuntimeException
      */
     private function readCache()
     {
