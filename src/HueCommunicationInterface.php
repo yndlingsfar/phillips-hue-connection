@@ -20,6 +20,13 @@ interface HueCommunicationInterface
     public function getLights();
 
     /**
+     * Returns all available lights as array of objects from cache
+     *
+     * @return array
+     */
+    public function getLightsFromCache();
+
+    /**
      * Change the state of a bulb
      *
      * @param $id

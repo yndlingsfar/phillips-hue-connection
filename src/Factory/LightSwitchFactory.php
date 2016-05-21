@@ -4,6 +4,7 @@ namespace DSteiner23\Light\Factory;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use DSteiner23\Light\Bridge;
+use DSteiner23\Light\Cacher;
 use DSteiner23\Light\HueCommunication;
 use DSteiner23\Light\LightSwitch;
 use GuzzleHttp\Client;
@@ -26,8 +27,13 @@ class LightSwitchFactory
         AnnotationRegistry::registerLoader('class_exists');
         
         $serializer = SerializerBuilder::create()->build();
-        $communication = new HueCommunication(new Client(), $serializer, new Bridge($ip, $username));
-        
+        $communication = new HueCommunication(
+            new Client(),
+            $serializer,
+            new Bridge($ip, $username),
+            new Cacher(__DIR__ . '/../cache')
+        );
+
         return new LightSwitch($communication);
     }
 }

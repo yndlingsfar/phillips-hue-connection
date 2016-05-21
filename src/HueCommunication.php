@@ -23,22 +23,34 @@ class HueCommunication implements HueCommunicationInterface
      * @var Bridge
      */
     private $bridge;
+
     /**
      * @var Serializer
      */
     private $serializer;
 
     /**
+     * @var CacherInterface
+     */
+    private $cacher;
+
+    /**
      * HueCommunication constructor.
      * @param Client $client
      * @param Serializer $serializer
      * @param Bridge $bridge
+     * @param CacherInterface $cacher
      */
-    public function __construct(Client $client, Serializer $serializer, Bridge $bridge)
-    {
+    public function __construct(
+        Client $client,
+        Serializer $serializer,
+        Bridge $bridge,
+        CacherInterface $cacher
+    ) {
         $this->client = $client;
         $this->bridge = $bridge;
         $this->serializer = $serializer;
+        $this->cacher = $cacher;
     }
 
     /**
@@ -60,13 +72,26 @@ class HueCommunication implements HueCommunicationInterface
             return [];
         }
 
+        // Write response to cache
+        $this->cacher->setCachedLights((string) $response->getBody());
+
         // Deserialize response to object
-        try {
-            $serializer = SerializerBuilder::create()->build();
-            return $serializer->deserialize($response->getBody(), 'DSteiner23\Light\Models\Lights', 'json');
-        } catch (\Exception $e) {
-            return [];
+        return $this->deserializeLights((string) $response->getBody());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getLightsFromCache()
+    {
+        $data = $this->cacher->getCachedLights();
+
+        if ($data && !$this->cacher->isCacheExpired($data['validUntil'])) {
+            return $this->deserializeLights($data);
         }
+
+        // Cache is empty or expired. Perform new guzzle request
+        return $this->getLights();
     }
 
     /**
@@ -93,5 +118,19 @@ class HueCommunication implements HueCommunicationInterface
         }
 
         return false;
+    }
+
+    /**
+     * @param   string  $data
+     * @return  array
+     */
+    private function deserializeLights($data)
+    {
+        try {
+            $serializer = SerializerBuilder::create()->build();
+            return $serializer->deserialize($data, 'DSteiner23\Light\Models\Lights', 'json');
+        } catch (\Exception $e) {
+            return [];
+        }
     }
 }
