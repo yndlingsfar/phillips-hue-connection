@@ -28,7 +28,7 @@ class LightSwitchFactory
             $configuration) ? $configuration[Cacher::OPTION_STATUS] : true;
         
         $cacheDir = array_key_exists(Cacher::OPTION_DIRECTORY,
-            $configuration) ? $configuration[Cacher::OPTION_DIRECTORY] : __DIR__ . '/../cache';
+            $configuration) ? $configuration[Cacher::OPTION_DIRECTORY] : __DIR__ . '/../../cache';
         
         //Doctrine Annotation Reader registration
         AnnotationRegistry::registerLoader('class_exists');

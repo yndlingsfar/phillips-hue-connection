@@ -26,7 +26,7 @@ The configuration is optional and can be used to overwrite caching defaults
 ````
 $config = [
     'cache_enabled' => false, // default to true
-    'cache_dir' => __DIR__ . '/yourDir' // default to /src/cache
+    'cache_dir' => __DIR__ . '/yourDir' // default to ROOT_DIR/cache
 ];
 ````
 
