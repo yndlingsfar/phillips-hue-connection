@@ -84,10 +84,10 @@ class HueCommunication implements HueCommunicationInterface
      */
     public function getLightsFromCache()
     {
-        $data = $this->cacher->getCachedLights();
+        $lights = $this->cacher->getCachedLights();
 
-        if ($data && !$this->cacher->isCacheExpired($data['validUntil'])) {
-            return $this->deserializeLights($data);
+        if (!empty($lights) && !$this->cacher->isCacheExpired($lights['validUntil'])) {
+            return $this->deserializeLights($lights['data']);
         }
 
         // Cache is empty or expired. Perform new guzzle request

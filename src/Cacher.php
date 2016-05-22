@@ -42,8 +42,7 @@ final class Cacher implements CacherInterface
      */
     public function getCachedLights()
     {
-        $cache = $this->readCache();
-        return isset($cache['data']) ? $cache['data'] : [];
+        return $this->readCache();
     }
 
     /**
