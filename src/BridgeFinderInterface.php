@@ -10,7 +10,7 @@ interface BridgeFinderInterface
 {
     const BROADCAST_IP = '239.255.255.250';
     const BROADCAST_PORT = 1900;
-    const BROADCAST_TIMEOUT = 2;
+    const BROADCAST_TIMEOUT = 8;
     const BROADCAST_BRIDGE_PATTERN = '/LOCATION: (http:\/\/([^:]+):([^\/]+)\/description\.xml)/m';
 
     /**
