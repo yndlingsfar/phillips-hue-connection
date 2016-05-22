@@ -19,14 +19,20 @@ Register vendor autoloader and doctrine somewhere in your bootstraping file
 require __DIR__ . '/vendor/autoload.php';
 ````
 
-__Usage__
+__Configuration__
+
+The configuration is optional and can be used to overwrite caching defaults
 
 ````
 $config = [
     'cache_enabled' => false, // default to true
     'cache_dir' => __DIR__ . '/yourDir' // default to /src/cache
 ];
+````
 
+__Usage__
+
+````
 $lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build(
     '192.168.100.1',
     'abcedefghijklmno',
