@@ -30,10 +30,12 @@ final class BridgeFinder implements BridgeFinderInterface
     private function performBroadcast()
     {
         $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+        $message = $this->getMessage();
+
         socket_sendto(
             $sock,
-            $this->getMessage(),
-            strlen($this->getMessage()),
+            $message,
+            strlen($message),
             0,
             BridgeFinderInterface::BROADCAST_IP,
             BridgeFinderInterface::BROADCAST_PORT
@@ -63,11 +65,13 @@ final class BridgeFinder implements BridgeFinderInterface
      */
     private function getMessage()
     {
-        return 'M-SEARCH * HTTP/1.1\r\n
-            HOST: 239.255.255.250:1900\r\n
-            MAN: ssdp:discover\r\n
-            MX: 10\r\n
-            ST: ssdp:all\r\n
-            \r\n';
+        $message = "M-SEARCH * HTTP/1.1\r\n";
+        $message .= "Host: 239.255.255.250:1900\r\n";
+        $message .= "Man: \"ssdp:discover\"\r\n";
+        $message .= "ST:upnp:rootdevice\r\n";
+        $message .= "MX:3\r\n";
+        $message .= "\r\n";
+
+        return $message;
     }
 }
