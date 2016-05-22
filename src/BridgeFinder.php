@@ -66,10 +66,10 @@ final class BridgeFinder implements BridgeFinderInterface
     private function getMessage()
     {
         $message = "M-SEARCH * HTTP/1.1\r\n";
-        $message .= "Host: 239.255.255.250:1900\r\n";
-        $message .= "Man: \"ssdp:discover\"\r\n";
-        $message .= "ST:upnp:rootdevice\r\n";
-        $message .= "MX:3\r\n";
+        $message .= "HOST: 239.255.255.250:1900\r\n";
+        $message .= "MAN: ssdp:discover\r\n";
+        $message .= "MX: 10\r\n";
+        $message .= "ST: urn:schemas-upnp-org:device:Basic:1\r\n";
         $message .= "\r\n";
 
         return $message;
