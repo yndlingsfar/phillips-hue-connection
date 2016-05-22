@@ -27,7 +27,12 @@ $config = [
     'cache_dir' => __DIR__ . '/yourDir' // default to /src/cache
 ];
 
-$lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build('192.168.100.1', 'abcedefghijklmno', $config);
+$lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build(
+    '192.168.100.1',
+    'abcedefghijklmno',
+    $config
+);
+
 $lightSwitch->switchState($id, $saturation, $brightness, $hue);
 
 * $id: The unique Id of your Bulb
