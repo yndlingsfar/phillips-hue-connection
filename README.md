@@ -48,6 +48,9 @@ $lightSwitch->switchOn($id);
 // Switches a single bulb off
 $lightSwitch->switchOff($id);
 
+// Get an instance of Lights, representing all Bulbs connected to the Bridge
+$lightSwitch->getLights();
+
 *$id: The unique Id of your Bulb
 *$saturation: integer 0-255
 *$brightness: integer 0-255
