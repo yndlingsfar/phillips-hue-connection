@@ -22,6 +22,9 @@ final class Cacher implements CacherInterface
      * @var string
      */
     private $fullFilePath;
+    
+    const OPTION_STATUS = 'cache_enabled';
+    const OPTION_DIRECTORY = 'cache_dir';
 
     /**
      * @param   string  $path

@@ -16,14 +16,21 @@ class LightSwitch implements LightSwitchInterface
     private $hueCommunication;
 
     /**
+     * @var bool
+     */
+    private $useCache;
+
+    /**
      * LightSwitch constructor.
      * @param HueCommunicationInterface $hueCommunication
+     * @param bool $useCache
      */
-    public function __construct(HueCommunicationInterface $hueCommunication)
+    public function __construct(HueCommunicationInterface $hueCommunication, $useCache = true)
     {
         $this->hueCommunication = $hueCommunication;
+        $this->useCache = true;
     }
-
+    
     public function switchOn($id)
     {
         // TODO: Implement switchOn() method.
@@ -48,5 +55,17 @@ class LightSwitch implements LightSwitchInterface
             ->setSaturation($saturation);
 
         return $this->hueCommunication->putOneBulbState($id, $state);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getLights()
+    {
+        if ($this->useCache == false) {
+            return $this->hueCommunication->getLights();
+        }
+
+        return $this->hueCommunication->getLightsFromCache();
     }
 }

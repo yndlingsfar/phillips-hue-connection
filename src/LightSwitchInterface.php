@@ -2,6 +2,7 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\Lights;
 use DSteiner23\Light\Models\State;
 
 /**
@@ -43,4 +44,9 @@ interface LightSwitchInterface
         $brightness = State::MAX_BRIGHTNESS,
         $hue
     );
+
+    /**
+     * @return Lights
+     */
+    public function getLights();
 }

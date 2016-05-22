@@ -22,7 +22,12 @@ require __DIR__ . '/vendor/autoload.php';
 __Usage__
 
 ````
-$lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build('192.168.100.1', 'abcedefghijklmno');
+$config = [
+    'cache_enabled' => false, // default to true
+    'cache_dir' => __DIR__ . '/yourDir' // default to /src/cache
+];
+
+$lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build('192.168.100.1', 'abcedefghijklmno', $config);
 $lightSwitch->switchState($id, $saturation, $brightness, $hue);
 
 * $id: The unique Id of your Bulb
