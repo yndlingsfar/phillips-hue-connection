@@ -30,17 +30,32 @@ class LightSwitch implements LightSwitchInterface
         $this->hueCommunication = $hueCommunication;
         $this->useCache = true;
     }
-    
+
+    /**
+     * @inheritdoc
+     */
     public function switchOn($id)
     {
-        // TODO: Implement switchOn() method.
+        $state = new State();
+        $state->setOn(true);
+
+        return $this->hueCommunication->putOneBulbState($id, $state);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function switchOff($id)
     {
-        // TODO: Implement switchOff() method.
+        $state = new State();
+        $state->setOn(false);
+
+        return $this->hueCommunication->putOneBulbState($id, $state);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function switchState(
         $id,
         $saturation = State::MAX_SATURATION,

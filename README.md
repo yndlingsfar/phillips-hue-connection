@@ -33,10 +33,17 @@ $lightSwitch = \DSteiner23\Light\Factory\LightSwitchFactory::build(
     $config
 );
 
+// Change saturation, brightness and color of a single bulb
 $lightSwitch->switchState($id, $saturation, $brightness, $hue);
 
-* $id: The unique Id of your Bulb
-* $saturation: integer 0-255
-* $brightness: integer 0-255
-* $hue: The color 0 - 65000
+// Switches a single bulb on
+$lightSwitch->switchOn($id);
+
+// Switches a single bulb off
+$lightSwitch->switchOff($id);
+
+*$id: The unique Id of your Bulb
+*$saturation: integer 0-255
+*$brightness: integer 0-255
+*$hue: The color 0 - 65000
 ````
