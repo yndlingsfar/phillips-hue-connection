@@ -27,6 +27,15 @@ interface HueCommunicationInterface
     public function getLightsFromCache();
 
     /**
+     * Creates an new user
+     *
+     * @param   string  $username
+     * @param   string  $devicetype
+     * @return  bool
+     */
+    public function createUser($username, $devicetype);
+
+    /**
      * Change the state of a bulb
      *
      * @param $id

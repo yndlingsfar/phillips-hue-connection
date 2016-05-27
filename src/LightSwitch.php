@@ -34,6 +34,14 @@ class LightSwitch implements LightSwitchInterface
     /**
      * @inheritdoc
      */
+    public function getHueCommunication()
+    {
+        return $this->hueCommunication;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function switchOn($id)
     {
         $state = new State();

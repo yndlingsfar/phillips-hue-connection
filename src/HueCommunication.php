@@ -3,6 +3,7 @@
 namespace DSteiner23\Light;
 
 use DSteiner23\Light\Models\State;
+use DSteiner23\Light\Models\User;
 use GuzzleHttp\Client;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
@@ -14,6 +15,8 @@ use Psr\Http\Message\ResponseInterface;
  */
 class HueCommunication implements HueCommunicationInterface
 {
+    const REQUEST_TIMEOUT = 3.14;
+
     /**
      * @var Client
      */
@@ -35,6 +38,11 @@ class HueCommunication implements HueCommunicationInterface
     private $cacher;
 
     /**
+     * @var UserManagerInterface
+     */
+    private $userManager;
+
+    /**
      * HueCommunication constructor.
      * @param Client $client
      * @param Serializer $serializer
@@ -45,12 +53,14 @@ class HueCommunication implements HueCommunicationInterface
         Client $client,
         Serializer $serializer,
         Bridge $bridge,
-        CacherInterface $cacher
+        CacherInterface $cacher,
+        UserManagerInterface $userManager
     ) {
         $this->client = $client;
         $this->bridge = $bridge;
         $this->serializer = $serializer;
         $this->cacher = $cacher;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -64,7 +74,8 @@ class HueCommunication implements HueCommunicationInterface
                 '%s/api/%s',
                 $this->bridge->getIp(),
                 $this->bridge->getUser()
-            )
+            ),
+            ['timeout' => self::REQUEST_TIMEOUT]
         );
 
         // Check if request was successful
@@ -94,6 +105,30 @@ class HueCommunication implements HueCommunicationInterface
         return $this->getLights();
     }
 
+    public function createUser($username, $devicetype)
+    {
+        /** @var User $user */
+        $user = $this->userManager->create($username, $devicetype);
+
+        $body = $this->serializer->serialize($user, 'json');
+
+        /** @var ResponseInterface $response */
+        $response = $this->client->request('POST',
+            sprintf(
+                '%s/api',
+                $this->bridge->getIp()
+            ),
+            ['body' => $body, 'timeout' => self::REQUEST_TIMEOUT]
+        );
+
+        // Check if request was successful
+        if ($response->getStatusCode() == 200) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * @inheritdoc
      */
@@ -109,7 +144,7 @@ class HueCommunication implements HueCommunicationInterface
                 $this->bridge->getUser(),
                 $id
             ),
-            ['body' => $body]
+            ['body' => $body, 'timeout' => self::REQUEST_TIMEOUT]
         );
 
         // Check if request was successful

@@ -7,6 +7,7 @@ use DSteiner23\Light\Bridge;
 use DSteiner23\Light\Cacher;
 use DSteiner23\Light\HueCommunication;
 use DSteiner23\Light\LightSwitch;
+use DSteiner23\Light\UserManager;
 use GuzzleHttp\Client;
 use JMS\Serializer\SerializerBuilder;
 
@@ -38,7 +39,8 @@ class LightSwitchFactory
             new Client(),
             $serializer,
             new Bridge($ip, $username),
-            new Cacher($cacheDir)
+            new Cacher($cacheDir),
+            new UserManager()
         );
 
         return new LightSwitch($communication, $cacheStatus);

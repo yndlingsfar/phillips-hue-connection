@@ -14,6 +14,13 @@ use DSteiner23\Light\Models\State;
 interface LightSwitchInterface
 {
     /**
+     * Returns the hue communication object
+     *
+     * @return HueCommunicationInterface
+     */
+    public function getHueCommunication();
+
+    /**
      * Switch a bulb on (using the default state)
      *
      * @param $id
