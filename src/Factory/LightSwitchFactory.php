@@ -8,7 +8,6 @@ use DSteiner23\Light\Cacher;
 use DSteiner23\Light\HueCommunication;
 use DSteiner23\Light\LightSwitch;
 use DSteiner23\Light\UserManager;
-use GuzzleHttp\Client;
 use JMS\Serializer\SerializerBuilder;
 
 /**
@@ -36,7 +35,6 @@ class LightSwitchFactory
         
         $serializer = SerializerBuilder::create()->build();
         $communication = new HueCommunication(
-            new Client(),
             $serializer,
             new Bridge($ip, $username),
             new Cacher($cacheDir),

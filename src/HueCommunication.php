@@ -4,10 +4,8 @@ namespace DSteiner23\Light;
 
 use DSteiner23\Light\Models\State;
 use DSteiner23\Light\Models\User;
-use GuzzleHttp\Client;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class HueCommunication
@@ -15,13 +13,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 class HueCommunication implements HueCommunicationInterface
 {
-    const REQUEST_TIMEOUT = 3.14;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
     /**
      * @var Bridge
      */
@@ -44,19 +35,16 @@ class HueCommunication implements HueCommunicationInterface
 
     /**
      * HueCommunication constructor.
-     * @param Client $client
      * @param Serializer $serializer
      * @param Bridge $bridge
      * @param CacherInterface $cacher
      */
     public function __construct(
-        Client $client,
         Serializer $serializer,
         Bridge $bridge,
         CacherInterface $cacher,
         UserManagerInterface $userManager
     ) {
-        $this->client = $client;
         $this->bridge = $bridge;
         $this->serializer = $serializer;
         $this->cacher = $cacher;
@@ -68,26 +56,18 @@ class HueCommunication implements HueCommunicationInterface
      */
     public function getLights()
     {
-        /** @var ResponseInterface $response */
-        $response = $this->client->request('GET',
-            sprintf(
-                '%s/api/%s',
-                $this->bridge->getIp(),
-                $this->bridge->getUser()
-            ),
-            ['timeout' => self::REQUEST_TIMEOUT]
-        );
+        $response = HttpClient::get(sprintf('%s/api/%s', $this->bridge->getIp(), $this->bridge->getUser()));
 
         // Check if request was successful
-        if ($response->getStatusCode() != 200) {
+        if (!$response) {
             return [];
         }
 
         // Write response to cache
-        $this->cacher->setCachedLights((string) $response->getBody());
+        $this->cacher->setCachedLights($response);
 
         // Deserialize response to object
-        return $this->deserializeLights((string) $response->getBody());
+        return $this->deserializeLights($response);
     }
 
     /**
@@ -112,21 +92,10 @@ class HueCommunication implements HueCommunicationInterface
 
         $body = $this->serializer->serialize($user, 'json');
 
-        /** @var ResponseInterface $response */
-        $response = $this->client->request('POST',
-            sprintf(
-                '%s/api',
-                $this->bridge->getIp()
-            ),
-            ['body' => $body, 'timeout' => self::REQUEST_TIMEOUT]
+        return HttpClient::post(
+            sprintf('%s/api', $this->bridge->getIp()),
+            $body
         );
-
-        // Check if request was successful
-        if ($response->getStatusCode() == 200) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -136,23 +105,15 @@ class HueCommunication implements HueCommunicationInterface
     {
         $body = $this->serializer->serialize($state, 'json');
 
-        /** @var ResponseInterface $response */
-        $response = $this->client->request('PUT',
+        return HttpClient::put(
             sprintf(
                 '%s/api/%s/lights/%d/state',
                 $this->bridge->getIp(),
                 $this->bridge->getUser(),
                 $id
             ),
-            ['body' => $body, 'timeout' => self::REQUEST_TIMEOUT]
+            $body
         );
-
-        // Check if request was successful
-        if ($response->getStatusCode() == 200) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
