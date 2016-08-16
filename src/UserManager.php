@@ -14,24 +14,24 @@ final class UserManager implements UserManagerInterface
 {
     /**
      * @param   string $username
-     * @param   string $devicetype
+     * @param   string $deviceType
      * @return  User
      * @throws  InvalidUsernameException
      * @throws  InvalidDeviceTypeException
      */
-    public function create($username, $devicetype)
+    public function create($username, $deviceType)
     {
         if (!$this->isValidUsername($username)) {
             throw new InvalidUsernameException(sprintf('Username %s is invalid', $username));
         }
 
-        if (!$this->isValidDeviceType($devicetype)) {
-            throw new InvalidDeviceTypeException(sprintf('Device %s is invalid', $devicetype));
+        if (!$this->isValidDeviceType($deviceType)) {
+            throw new InvalidDeviceTypeException(sprintf('Device %s is invalid', $deviceType));
         }
 
         $user = new User();
         $user->setUsername($username);
-        $user->setDevicetype($devicetype);
+        $user->setDevicetype($deviceType);
 
         return $user;
     }

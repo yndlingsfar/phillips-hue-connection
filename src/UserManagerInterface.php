@@ -2,6 +2,8 @@
 
 namespace DSteiner23\Light;
 
+use DSteiner23\Light\Models\User;
+
 /**
  * Interface UserManagerInterface
  * @package DSteiner23\Light
@@ -10,8 +12,8 @@ interface UserManagerInterface
 {
     /**
      * @param   string  $username
-     * @param   string  $devicetype
-     * @return  bool
+     * @param   string  $deviceType
+     * @return  User
      */
-    public function create($username, $devicetype);
+    public function create($username, $deviceType);
 }
