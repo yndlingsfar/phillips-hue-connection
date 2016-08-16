@@ -18,7 +18,7 @@ final class HttpClient implements HttpClientInterface
     public static function get($url)
     {
         /** @var ResponseInterface $response */
-        $response = self::createBaseRequest($url, 'GET');
+        $response = self::createBaseRequest($url, self::METHOD_GET);
 
         // Check if request was successful
         if ($response->getStatusCode() == self::HTTP_OK) {
@@ -34,7 +34,7 @@ final class HttpClient implements HttpClientInterface
     public static function post($url, $body)
     {
         /** @var ResponseInterface $response */
-        $response = self::createBaseRequest($url, 'POST', $body);
+        $response = self::createBaseRequest($url, self::METHOD_POST, $body);
 
         // Check if request was successful
         if ($response->getStatusCode() == self::HTTP_OK) {
@@ -50,7 +50,7 @@ final class HttpClient implements HttpClientInterface
     public static function put($url, $body)
     {
         /** @var ResponseInterface $response */
-        $response = self::createBaseRequest($url, 'PUT', $body);
+        $response = self::createBaseRequest($url, self::METHOD_PUT, $body);
 
         // Check if request was successful
         if ($response->getStatusCode() == self::HTTP_OK) {

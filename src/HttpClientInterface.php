@@ -12,6 +12,10 @@ interface HttpClientInterface
 
     const HTTP_OK = 200;
 
+    const METHOD_GET = 'GET';
+    const METHOD_POST = 'POST';
+    const METHOD_PUT = 'PUT';
+
     /**
      * @param   string  $url
      * @return  string
